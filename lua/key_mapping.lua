@@ -52,3 +52,21 @@ map("n", "<A-l>", "<C-w>l", opt)
 -- 插件快捷键
 -- nvimTree 打开目录窗口
 map('n', '<A-m>', ':NvimTreeToggle<CR>', opt)
+
+-- bufferline
+-- These commands will navigate through buffers in order regardless of which mode you are using
+-- e.g. if you change the order of buffers :bnext and :bprevious will not respect the custom ordering
+map('n', "bl", ":BufferLineCycleNext<CR>", opt)
+map('n', "bh", ":BufferLineCyclePrev<CR>", opt)
+
+-- These commands will move the current buffer backwards or forwards in the bufferline
+map('n', "b[", ":BufferLineMoveNext<CR>", opt)
+map('n', "[b", ":BufferLineMovePrev<CR>", opt)
+
+--These commands will sort buffers by directory, language, or a custom criteria
+map('n', "be", ":BufferLineSortByExtension<CR>", opt)
+map('n', "bd", ":BufferLineSortByDirectory<CR>", opt)
+
+
+
+
