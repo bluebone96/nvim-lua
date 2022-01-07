@@ -1,3 +1,7 @@
+-- vim.o.{option}: 全局选项
+-- vim.bo.{option}: buffer-local 选项
+-- vim.wo.{option}: window-local 选项
+
 -- utf8
 vim.g.encoding = "UTF-8"
 vim.o.fileencoding = 'utf-8'
@@ -12,7 +16,7 @@ vim.wo.cursorline = true
 -- 显示左侧图标指示列
 vim.wo.signcolumn = "yes"
 -- 右侧参考线，超过表示代码太长了，考虑换行
-vim.wo.colorcolumn = "80"
+vim.wo.colorcolumn = "120"
 -- 缩进2个空格等于一个Tab
 vim.o.tabstop = 2
 vim.bo.tabstop = 2
@@ -65,9 +69,7 @@ vim.o.splitright = true
 -- 自动补全不自动选中
 vim.g.completeopt = "menu,menuone,noselect,noinsert"
 -- 样式
-vim.o.background = "dark"
-vim.o.termguicolors = true
-vim.opt.termguicolors = true
+--vim.o.background = "dark"
 -- 不可见字符的显示，这里只把空格显示为一个点
 vim.o.list = true
 vim.o.listchars = "space:·"
@@ -79,3 +81,9 @@ vim.o.pumheight = 10
 -- always show tabline
 vim.o.showtabline = 2
 
+
+-- 开启 Folding
+vim.wo.foldmethod = 'expr'
+vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
+-- 默认不要折叠
+vim.wo.foldlevel = 99

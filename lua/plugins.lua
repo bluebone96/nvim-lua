@@ -13,6 +13,7 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
   -- 主题插件
   use 'tanvirtin/monokai.nvim'
+  use 'sainnhe/sonokai'
   -- 目录树插件
   use {
     'kyazdani42/nvim-tree.lua',
@@ -21,10 +22,20 @@ return require('packer').startup(function(use)
     },
     config = function() require'nvim-tree'.setup {} end
   }
-  -- using packer.nvim
+  -- Tab标签
   use {
     'akinsho/bufferline.nvim', 
     requires = 'kyazdani42/nvim-web-devicons'
+  }
+  -- 语法高亮支持
+  use {
+    'nvim-treesitter/nvim-treesitter', 
+    run = ':TSUpdate' 
+  }
+  -- 类型airline 状态栏
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
 
   -- Automatically set up your configuration after cloning packer.nvim
