@@ -20,9 +20,9 @@ local map = vim.api.nvim_set_keymap
 local opt = {noremap = true, silent = true}
 
 -- <C-x> 表示 同时按 Control + x
--- 普通模式 向上/向下 移动9行 
-map("n", "<C-u>", "9k", opt) 
-map("n", "<C-d>", "9j", opt) 
+-- 普通模式 向上/向下 移动9行
+map("n", "<C-u>", "9k", opt)
+map("n", "<C-d>", "9j", opt)
 
 -- 可视模式 连续 > 缩进代码
 map('v', '<', '<gv', opt)
@@ -51,7 +51,10 @@ map("n", "<A-l>", "<C-w>l", opt)
 
 -- 插件快捷键
 -- nvimTree 打开目录窗口
-map('n', '<A-m>', ':NvimTreeToggle<CR>', opt)
+--map('n', '<F2>', ':NvimTreeToggle<CR>', opt)
+map('n', '<A-m>', ':NvimTreeFindFileToggle<CR>', opt)
+--map('n', '<F2>', ':NvimTreeRefresh<CR>', opt)
+-- NvimTreeOpen, NvimTreeClose, NvimTreeFocus, NvimTreeFindFileToggle, and NvimTreeResize are also available if you need them
 
 -- bufferline
 -- These commands will navigate through buffers in order regardless of which mode you are using

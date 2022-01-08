@@ -1,3 +1,6 @@
+-- a list of groups can be found at `:help nvim_tree_highlight`
+vim.cmd[[highlight NvimTreeFolderIcon guibg=blue]]
+
 -- o 打开关闭文件夹
 -- a 创建文件
 -- r 重命名
