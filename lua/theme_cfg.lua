@@ -21,9 +21,9 @@ vim.g.sonokai_disable_italic_comment = 1
 vim.g.sonokai_transparent_background = 0
 -- 错误提示信息，下划线和染色背景
 vim.g.sonokai_diagnostic_line_highlight = 1
-vim.g.sonokai_diagnostic_text_highlight = 0
+vim.g.sonokai_diagnostic_text_highlight = 1
 -- 优先只加载部分，后续加载全部。优化性能
 vim.g.sonokai_better_performance = 1
 vim.cmd [[ colorscheme sonokai ]]
---vim.g.colorscheme = sonokai
+--vim.g.colorscheme = "sonokai"
 

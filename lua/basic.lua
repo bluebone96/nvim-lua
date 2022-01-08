@@ -80,8 +80,11 @@ vim.o.shortmess = vim.o.shortmess .. 'c'
 vim.o.pumheight = 10
 -- always show tabline
 vim.o.showtabline = 2
+-- 日志
+--vim.o.verbose = 10
+--vim.o.verbosefile = "vim.log"
 
-
+--vim.cmd [[ set verbosefile=vim.log ]]
 -- 开启 Folding
 vim.wo.foldmethod = 'expr'
 vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
