@@ -59,20 +59,20 @@ map('n', '<A-m>', ':NvimTreeFindFileToggle<CR>', opt)
 -- bufferline
 -- These commands will navigate through buffers in order regardless of which mode you are using
 -- e.g. if you change the order of buffers :bnext and :bprevious will not respect the custom ordering
-map('n', "<leader>l", ":BufferLineCycleNext<CR>", opt)
 map('n', "<leader>h", ":BufferLineCyclePrev<CR>", opt)
+map('n', "<leader>l", ":BufferLineCycleNext<CR>", opt)
 
 -- These commands will move the current buffer backwards or forwards in the bufferline
-map('n', "bn", ":BufferLineMoveNext<CR>", opt)
-map('n', "bp", ":BufferLineMovePrev<CR>", opt)
+map('n', "<leader>mh", ":BufferLineMovePrev<CR>", opt)
+map('n', "<leader>ml", ":BufferLineMoveNext<CR>", opt)
 
 --These commands will sort buffers by directory, language, or a custom criteria
-map('n', "bse", ":BufferLineSortByExtension<CR>", opt)
-map('n', "bsd", ":BufferLineSortByDirectory<CR>", opt)
+--map('n', "<Tab>se", ":BufferLineSortByExtension<CR>", opt)
+--map('n', "<Tab>sd", ":BufferLineSortByDirectory<CR>", opt)
 
 
 -- nvim-treesitter 代码格式化
-map("n", "<leader>ff", "gg=G", opt) -- 有的不支持lsp格式化,用这个
+map("n", "<leader>==", "gg=G", opt) -- 有的不支持lsp格式化,用这个
 
 -- one-small-step-for-vimkind 调试debug
 map('n', "<leader>r", ":lua require'osv'.run_this()<CR>", opt)
@@ -87,8 +87,15 @@ map('n', "<F8>", ":lua require'dap'.step_out()<CR>", opt)
 --    nnoremap <silent> <leader>dr :lua require'dap'.repl.open()<CR>
 --    nnoremap <silent> <leader>dl :lua require'dap'.run_last()<CR>
 
+-- telescope 模糊查询
+map('n', '<leader>ff', ":lua require('telescope.builtin').find_files()<cr>", opt)
+map('n', '<leader>fg', ":lua require('telescope.builtin').live_grep()<cr>", opt)
+map('n', '<leader>fb', ":lua require('telescope.builtin').buffers()<cr>", opt)
+map('n', '<leader>fh', ":lua require('telescope.builtin').help_tags()<cr>", opt)
+map('n', '<leader>/',  ":lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>", opt)
+--map('n', '<leader>fs', ":lua require('telescope.builtin').file_browser()<cr>", opt)
 
-
+-- 插件快捷键 外部引用
 local _plugin_keys = { }
 
 -- lsp common keymapping
@@ -117,7 +124,7 @@ _plugin_keys.lsp_keymap_common = function(_, bufnr)
 
   buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  buf_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+  buf_set_keymap('n', '<leader>=', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
   --  buf_set_keymap('n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
   --  buf_set_keymap('n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
   --  buf_set_keymap('n', '<leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
@@ -155,6 +162,78 @@ _plugin_keys.cmp_keymap = function(cmp)
     -- 确认（函数带参数）
     --['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
   }
+end
+
+-- telescope 模糊查询快捷键
+_plugin_keys.telescope_keymap = function(actions)
+  return {
+     -- map actions.which_key to <C-h> (default: <C-/>)
+     -- actions.which_key shows the mappings for your picker,
+     -- e.g. git_{create, delete, ...}_branch for the git_branches picker
+    -- i: insert mode  n: normal mode
+      i = {
+        ["<C-n>"] = actions.cycle_history_next,
+        ["<C-p>"] = actions.cycle_history_prev,
+
+        ["<C-j>"] = actions.move_selection_next,
+        ["<C-k>"] = actions.move_selection_previous,
+
+        ["<C-c>"] = actions.close,
+
+        ["<Down>"] = actions.move_selection_next,
+        ["<Up>"] = actions.move_selection_previous,
+
+        ["<CR>"] = actions.select_default,
+        ["<C-x>"] = actions.select_horizontal,
+        ["<C-v>"] = actions.select_vertical,
+        ["<C-t>"] = actions.select_tab,
+
+        ["<C-u>"] = actions.preview_scrolling_up,
+        ["<C-d>"] = actions.preview_scrolling_down,
+
+        ["<PageUp>"] = actions.results_scrolling_up,
+        ["<PageDown>"] = actions.results_scrolling_down,
+
+        ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
+        ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
+        ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
+        ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+        ["<C-l>"] = actions.complete_tag,
+        ["<C-_>"] = actions.which_key, -- keys from pressing <C-/>
+      },
+
+      n = {
+        ["<esc>"] = actions.close,
+        ["<CR>"] = actions.select_default,
+        ["<C-x>"] = actions.select_horizontal,
+        ["<C-v>"] = actions.select_vertical,
+        ["<C-t>"] = actions.select_tab,
+
+        ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
+        ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
+        ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
+        ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+
+        ["j"] = actions.move_selection_next,
+        ["k"] = actions.move_selection_previous,
+        ["H"] = actions.move_to_top,
+        ["M"] = actions.move_to_middle,
+        ["L"] = actions.move_to_bottom,
+
+        ["<Down>"] = actions.move_selection_next,
+        ["<Up>"] = actions.move_selection_previous,
+        ["gg"] = actions.move_to_top,
+        ["G"] = actions.move_to_bottom,
+
+        ["<C-u>"] = actions.preview_scrolling_up,
+        ["<C-d>"] = actions.preview_scrolling_down,
+
+        ["<PageUp>"] = actions.results_scrolling_up,
+        ["<PageDown>"] = actions.results_scrolling_down,
+
+        ["?"] = actions.which_key,
+      },
+    }
 end
 
 return _plugin_keys;

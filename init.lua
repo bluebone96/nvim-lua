@@ -20,3 +20,5 @@ require('lsp/lsp_setup')
 require('nvimcmp_cfg')
 -- bebug lua配置
 require('nvimdap_cfg')
+-- telescope 模糊查询
+require('telescope_cfg')

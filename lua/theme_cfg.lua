@@ -1,6 +1,6 @@
 -- 主题设置
 -- vim.fn.{function}() lua调用vimscript函数
-if vim.fn.has('termguicolors') == 1 then 
+if vim.fn.has('termguicolors') == 1 then
   vim.o.termguicolors = true
   vim.opt.termguicolors = true
 end
@@ -10,7 +10,7 @@ end
 --require('monokai').setup { palette = require('monokai').pro }
 -- require('monokai').setup { palette = require('monokai').soda }
 --
--- sonokai 主题设置 
+-- sonokai 主题设置
 -- The style of this color scheme.
 -- Available values: 'default', 'atlantis', 'andromeda', 'shusia', 'maia', 'espresso'
 vim.g.sonokai_style = 'atlantis'
