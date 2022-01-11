@@ -22,3 +22,6 @@ require('nvimcmp_cfg')
 require('nvimdap_cfg')
 -- telescope 模糊查询
 require('telescope_cfg')
+-- autopairs 智能括号匹配
+require('autopairs_cfg')
+

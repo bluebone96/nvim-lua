@@ -36,6 +36,16 @@ require'nvim-treesitter.configs'.setup {
   -- 启用基于Treesitter的代码格式化(=) . NOTE: This is an experimental feature.
   indent = {
     enable = true
+  },
+
+  -- rainbow
+  rainbow = {
+    enable = true,
+    -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
+    extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+    max_file_lines = nil, -- Do not enable for files with more than n lines, int
+    -- colors = {}, -- table of hex strings
+    -- termcolors = {} -- table of colour name strings
   }
 }
 

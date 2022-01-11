@@ -36,7 +36,9 @@ if fn.empty(fn.glob(install_path)) > 0 then
     -- 语法高亮支持
     use {
       'nvim-treesitter/nvim-treesitter',
-      run = ':TSUpdate'
+      run = ':TSUpdate',
+      -- ts-rainbow 彩虹括号 依赖 nvim-treesitter
+      requires = {'p00f/nvim-ts-rainbow', opt = true },
     }
     -- 类型airline 状态栏
     use {
@@ -75,6 +77,9 @@ if fn.empty(fn.glob(install_path)) > 0 then
         -- {'nvim-telescope/telescope-file-browser.nvim'}
       }
     }
+
+    -- autopair 括号自动补全、跳过
+    use 'windwp/nvim-autopairs'
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
