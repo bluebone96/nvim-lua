@@ -140,11 +140,11 @@ end
 -- nvim-cmp 自动补全快捷键
 _plugin_keys.cmp_keymap = function(cmp)
   return {
-    -- 上一个/ 下一个
+    -- 上一个/ 下一个提示
     ['<C-k>'] = cmp.mapping.select_prev_item(),
     ['<C-j>'] = cmp.mapping.select_next_item(),
 
-    -- 向上/向下滚动n个
+    -- 向上/向下滚动n行文档
     ['<C-u>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
     ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
 
@@ -159,7 +159,6 @@ _plugin_keys.cmp_keymap = function(cmp)
       select = true,
       behavior = cmp.ConfirmBehavior.Replace,
     }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-    -- 确认（函数带参数）
     --['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
   }
 end

@@ -23,10 +23,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
     -- 目录树插件
     use {
       'kyazdani42/nvim-tree.lua',
-      requires = {
-        'kyazdani42/nvim-web-devicons', -- optional, for file icon
-      },
-      config = function() require'nvim-tree'.setup {} end
+      requires = { 'kyazdani42/nvim-web-devicons'}, -- optional, for file icon
     }
     -- Tab标签
     use {
@@ -34,11 +31,12 @@ if fn.empty(fn.glob(install_path)) > 0 then
       requires = 'kyazdani42/nvim-web-devicons'
     }
     -- 语法高亮支持
-    use {
-      'nvim-treesitter/nvim-treesitter',
-      run = ':TSUpdate',
-      -- ts-rainbow 彩虹括号 依赖 nvim-treesitter
-      requires = {'p00f/nvim-ts-rainbow', opt = true },
+    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', requires = {
+        -- ts-rainbow 彩虹括号 依赖 nvim-treesitter
+        {'p00f/nvim-ts-rainbow', opt = true },
+        -- tab跳出括号
+        {'abecodes/tabout.nvim'},
+      },
     }
     -- 类型airline 状态栏
     use {
@@ -48,20 +46,20 @@ if fn.empty(fn.glob(install_path)) > 0 then
     -- lsp 语法检测
     use {
       'neovim/nvim-lspconfig',
-      requires = 'williamboman/nvim-lsp-installer' -- lsp-server下载
+      requires = {
+        'williamboman/nvim-lsp-installer', -- lsp-server下载
+      },
     }
     -- nvim-cmp 自动补全
-    use 'hrsh7th/cmp-nvim-lsp' -- { name = nvim_lsp }
-    use 'hrsh7th/cmp-buffer'   -- { name = 'buffer' },
-    use 'hrsh7th/cmp-path'     -- { name = 'path' }
-    use 'hrsh7th/cmp-cmdline'  -- { name = 'cmdline' }
-    use 'hrsh7th/nvim-cmp'
-    -- vsnip
-    use 'hrsh7th/cmp-vsnip'    -- { name = 'vsnip' }
-    use 'hrsh7th/vim-vsnip'
-    use 'rafamadriz/friendly-snippets'
-    -- lspkind
-    use 'onsails/lspkind-nvim'
+    use "hrsh7th/nvim-cmp" -- The completion plugin
+    use "hrsh7th/cmp-buffer" -- buffer completions
+    use "hrsh7th/cmp-path" -- path completions
+    use "hrsh7th/cmp-cmdline" -- cmdline completions
+    use "saadparwaiz1/cmp_luasnip" -- snippet completions
+    use "hrsh7th/cmp-nvim-lsp"
+    -- snippets 引擎
+    use "L3MON4D3/LuaSnip" --snippet engine
+    use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
 
     -- debug lua
     use {
@@ -78,7 +76,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
       }
     }
 
-    -- autopair 括号自动补全、跳过
+    -- autopair 括号自动补全
     use 'windwp/nvim-autopairs'
 
     -- Automatically set up your configuration after cloning packer.nvim

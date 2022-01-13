@@ -24,4 +24,6 @@ require('nvimdap_cfg')
 require('telescope_cfg')
 -- autopairs 智能括号匹配
 require('autopairs_cfg')
+-- tabout 跳出括号
+require('tabout_cfg')
 
