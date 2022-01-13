@@ -71,6 +71,9 @@ if fn.empty(fn.glob(install_path)) > 0 then
   -- commnet 注释
   use "terrortylor/nvim-comment"
 
+  -- 终端
+  use 'akinsho/toggleterm.nvim'
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then

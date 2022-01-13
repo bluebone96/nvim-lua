@@ -48,10 +48,16 @@ map("n", "<A-j>", "<C-w>j", opt)
 map("n", "<A-k>", "<C-w>k", opt)
 map("n", "<A-l>", "<C-w>l", opt)
 
--- 终端term, tab标签
-map("n", "<leader>tt", ":sp term://zsh<CR>", opt)
+
 
 -- 插件快捷键
+--
+-- toggleterm 终端
+map("n", "<leader>tt", "<CMD> ToggleTerm <CR>", opt)
+map("n", "<leader>tf", "<CMD> ToggleTerm direction=float<CR>", opt)
+map("n", "<leader>th", "<CMD> ToggleTerm direction=horizontal<CR>", opt)
+map("n", "<leader>tv", "<CMD> ToggleTerm direction=vertical<CR>", opt)
+
 -- nvimTree 打开目录窗口
 --map('n', '<F2>', ':NvimTreeToggle<CR>', opt)
 map('n', '<A-m>', ':NvimTreeFindFileToggle<CR>', opt)

@@ -26,3 +26,5 @@ require('autopairs_cfg')
 require('tabout_cfg')
 -- 注释
 require('comment_cfg')
+-- 终端
+require('toggleterm_cfg')

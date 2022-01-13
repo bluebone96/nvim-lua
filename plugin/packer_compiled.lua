@@ -114,11 +114,6 @@ _G.packer_plugins = {
     path = "/home/blue/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
   },
-  ["monokai.nvim"] = {
-    loaded = true,
-    path = "/home/blue/.local/share/nvim/site/pack/packer/start/monokai.nvim",
-    url = "https://github.com/tanvirtin/monokai.nvim"
-  },
   ["nvim-autopairs"] = {
     loaded = true,
     path = "/home/blue/.local/share/nvim/site/pack/packer/start/nvim-autopairs",
@@ -128,6 +123,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/blue/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
+  },
+  ["nvim-comment"] = {
+    loaded = true,
+    path = "/home/blue/.local/share/nvim/site/pack/packer/start/nvim-comment",
+    url = "https://github.com/terrortylor/nvim-comment"
   },
   ["nvim-lsp-installer"] = {
     loaded = true,
@@ -189,6 +189,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/blue/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
+  },
+  ["toggleterm.nvim"] = {
+    loaded = true,
+    path = "/home/blue/.local/share/nvim/site/pack/packer/start/toggleterm.nvim",
+    url = "https://github.com/akinsho/toggleterm.nvim"
   }
 }
 
