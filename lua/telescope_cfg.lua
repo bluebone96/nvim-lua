@@ -3,8 +3,6 @@ if not status_ok then
   return
 end
 
-local actions = require "telescope.actions"
-
 telescope.setup {
   defaults = {
     -- Default configuration for telescope goes here:
@@ -13,7 +11,14 @@ telescope.setup {
     selection_caret = " ",
     path_display = { "smart" },
 
-    mappings = require('key_mapping').telescope_keymap(actions),
+    mappings = {
+      i = {
+        -- map actions.which_key to <C-h> (default: <C-/>)
+        -- actions.which_key shows the mappings for your picker,
+        -- e.g. git_{create, delete, ...}_branch for the git_branches picker
+        ["<C-h>"] = "which_key"
+      }
+    },
 
     file_ignore_patterns = {
       ".git",

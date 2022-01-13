@@ -64,7 +64,7 @@ local progress = function()
   return chars[index]
 end
 
-require('lualine').setup {
+lualine.setup {
   options = {
     icons_enabled = true,
     theme = 'sonokai',

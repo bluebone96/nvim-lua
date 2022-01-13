@@ -48,6 +48,8 @@ map("n", "<A-j>", "<C-w>j", opt)
 map("n", "<A-k>", "<C-w>k", opt)
 map("n", "<A-l>", "<C-w>l", opt)
 
+-- 终端term, tab标签
+map("n", "<leader>tt", ":sp term://zsh<CR>", opt)
 
 -- 插件快捷键
 -- nvimTree 打开目录窗口
@@ -73,19 +75,6 @@ map('n', "<leader>ml", ":BufferLineMoveNext<CR>", opt)
 
 -- nvim-treesitter 代码格式化
 map("n", "<leader>==", "gg=G", opt) -- 有的不支持lsp格式化,用这个
-
--- one-small-step-for-vimkind 调试debug
-map('n', "<leader>r", ":lua require'osv'.run_this()<CR>", opt)
-map('n', "<leader>b", ":lua require'dap'.toggle_breakpoint()<CR>", opt)
-map('n', "<leader>B", ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", opt)
-map('n', "<F5>", ":lua require'dap'.continue()<CR>", opt)
-map('n', "<F6>", ":lua require'dap'.step_over()<CR>", opt)
-map('n', "<F7>", ":lua require'dap'.step_into()<CR>", opt)
-map('n', "<F8>", ":lua require'dap'.step_out()<CR>", opt)
-
---    nnoremap <silent> <leader>lp :lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
---    nnoremap <silent> <leader>dr :lua require'dap'.repl.open()<CR>
---    nnoremap <silent> <leader>dl :lua require'dap'.run_last()<CR>
 
 -- telescope 模糊查询
 map('n', '<leader>ff', ":lua require('telescope.builtin').find_files()<cr>", opt)
@@ -161,78 +150,6 @@ _plugin_keys.cmp_keymap = function(cmp)
     }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     --['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
   }
-end
-
--- telescope 模糊查询快捷键
-_plugin_keys.telescope_keymap = function(actions)
-  return {
-     -- map actions.which_key to <C-h> (default: <C-/>)
-     -- actions.which_key shows the mappings for your picker,
-     -- e.g. git_{create, delete, ...}_branch for the git_branches picker
-    -- i: insert mode  n: normal mode
-      i = {
-        ["<C-n>"] = actions.cycle_history_next,
-        ["<C-p>"] = actions.cycle_history_prev,
-
-        ["<C-j>"] = actions.move_selection_next,
-        ["<C-k>"] = actions.move_selection_previous,
-
-        ["<C-c>"] = actions.close,
-
-        ["<Down>"] = actions.move_selection_next,
-        ["<Up>"] = actions.move_selection_previous,
-
-        ["<CR>"] = actions.select_default,
-        ["<C-x>"] = actions.select_horizontal,
-        ["<C-v>"] = actions.select_vertical,
-        ["<C-t>"] = actions.select_tab,
-
-        ["<C-u>"] = actions.preview_scrolling_up,
-        ["<C-d>"] = actions.preview_scrolling_down,
-
-        ["<PageUp>"] = actions.results_scrolling_up,
-        ["<PageDown>"] = actions.results_scrolling_down,
-
-        ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
-        ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
-        ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
-        ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
-        ["<C-l>"] = actions.complete_tag,
-        ["<C-h>"] = actions.which_key, -- keys from pressing <C-/>
-      },
-
-      n = {
-        ["<esc>"] = actions.close,
-        ["<CR>"] = actions.select_default,
-        ["<C-x>"] = actions.select_horizontal,
-        ["<C-v>"] = actions.select_vertical,
-        ["<C-t>"] = actions.select_tab,
-
-        ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
-        ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
-        ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
-        ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
-
-        ["j"] = actions.move_selection_next,
-        ["k"] = actions.move_selection_previous,
-        ["H"] = actions.move_to_top,
-        ["M"] = actions.move_to_middle,
-        ["L"] = actions.move_to_bottom,
-
-        ["<Down>"] = actions.move_selection_next,
-        ["<Up>"] = actions.move_selection_previous,
-        ["gg"] = actions.move_to_top,
-        ["G"] = actions.move_to_bottom,
-
-        ["<C-u>"] = actions.preview_scrolling_up,
-        ["<C-d>"] = actions.preview_scrolling_down,
-
-        ["<PageUp>"] = actions.results_scrolling_up,
-        ["<PageDown>"] = actions.results_scrolling_down,
-
-        ["?"] = actions.which_key,
-      },
-    }
 end
 
 return _plugin_keys;

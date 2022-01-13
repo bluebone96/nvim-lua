@@ -18,12 +18,11 @@ require('treesitter_cfg')
 require('lsp/lsp_setup')
 -- 自动补全
 require('nvimcmp_cfg')
--- bebug lua配置
-require('nvimdap_cfg')
 -- telescope 模糊查询
 require('telescope_cfg')
 -- autopairs 智能括号匹配
 require('autopairs_cfg')
 -- tabout 跳出括号
 require('tabout_cfg')
-
+-- 注释
+require('comment_cfg')

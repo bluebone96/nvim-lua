@@ -129,11 +129,6 @@ _G.packer_plugins = {
     path = "/home/blue/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
   },
-  ["nvim-dap"] = {
-    loaded = true,
-    path = "/home/blue/.local/share/nvim/site/pack/packer/start/nvim-dap",
-    url = "https://github.com/mfussenegger/nvim-dap"
-  },
   ["nvim-lsp-installer"] = {
     loaded = true,
     path = "/home/blue/.local/share/nvim/site/pack/packer/start/nvim-lsp-installer",
@@ -164,11 +159,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/blue/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
     url = "https://github.com/kyazdani42/nvim-web-devicons"
-  },
-  ["one-small-step-for-vimkind"] = {
-    loaded = true,
-    path = "/home/blue/.local/share/nvim/site/pack/packer/start/one-small-step-for-vimkind",
-    url = "https://github.com/jbyuki/one-small-step-for-vimkind"
   },
   ["packer.nvim"] = {
     loaded = true,
