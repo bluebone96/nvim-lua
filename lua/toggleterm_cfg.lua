@@ -10,7 +10,7 @@ toggleterm.setup({
     if term.direction == "horizontal" then
       return 15
     elseif term.direction == "vertical" then
-      return vim.o.columns * 0.3
+      return math.ceil(vim.o.columns * 0.3)
     end
   end,
   open_mapping = [[<c-\>]],
@@ -35,8 +35,8 @@ toggleterm.setup({
     -- the 'curved' border is a custom border type
     -- not natively supported but implemented in this plugin.
     --border = 'single' | 'double' | 'shadow' | 'curved' | ... other options supported by win open
-    border = 'double',
-    width = vim.o.columns * 0.5,
+    border = 'curved',
+    width = math.ceil(vim.o.columns * 0.8),
     height = 15,
     winblend = 3,
     highlights = {
