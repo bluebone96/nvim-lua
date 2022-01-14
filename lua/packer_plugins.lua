@@ -56,7 +56,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
   use "L3MON4D3/LuaSnip" --snippet engine
   use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
 
- -- telescope 模糊查找
+  -- telescope 模糊查找
   use {
     'nvim-telescope/telescope.nvim',
     requires = {
@@ -69,7 +69,10 @@ if fn.empty(fn.glob(install_path)) > 0 then
   use 'windwp/nvim-autopairs'
 
   -- commnet 注释
-  use "terrortylor/nvim-comment"
+  use {
+    'terrortylor/nvim-comment',
+    requires = 'JoosepAlviste/nvim-ts-context-commentstring'
+  }
 
   -- 终端
   use 'akinsho/toggleterm.nvim'
