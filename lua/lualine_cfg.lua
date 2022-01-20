@@ -15,12 +15,25 @@ end
 
 local diagnostics = {
   "diagnostics",
+  -- Table of diagnostic sources, available sources are:
+  --   'nvim_lsp', 'nvim_diagnostic', 'coc', 'ale', 'vim_lsp'.
+  -- or a function that returns a table as such:
+  --   { error=error_cnt, warn=warn_cnt, info=info_cnt, hint=hint_cnt }
   sources = { "nvim_diagnostic" },
-  sections = { "error", "warn" },
-  symbols = { error = " ", warn = " " },
+  -- Displays diagnostics for the defined severity types
+  sections = { "error", "warn", "info", "hint" },
+  diagnostics_color = {
+    -- Same values as the general color option can be used here.
+    error = 'DiagnosticError', -- Changes diagnostics' error color.
+    warn  = 'DiagnosticWarn',  -- Changes diagnostics' warn color.
+    info  = 'DiagnosticInfo',  -- Changes diagnostics' info color.
+    hint  = 'DiagnosticHint',  -- Changes diagnostics' hint color.
+  },
+  symbols = {error = 'E:', warn = 'W:', info = 'I:', hint = 'H:'},
+  -- symbols = { error = " ", warn = " " },
   colored = true,
   update_in_insert = false,
-  always_visible = true,
+  always_visible = false,
 }
 
 local diff = {
@@ -54,16 +67,6 @@ local location = {
   padding = 0,
 }
 
--- cool function for progress
-local progress = function()
-  local current_line = vim.fn.line(".")
-  local total_lines = vim.fn.line("$")
-  local chars = { "__", "▁▁", "▂▂", "▃▃", "▄▄", "▅▅", "▆▆", "▇▇", "██" }
-  local line_ratio = current_line / total_lines
-  local index = math.ceil(line_ratio * #chars)
-  return chars[index]
-end
-
 lualine.setup {
   options = {
     icons_enabled = true,
@@ -76,19 +79,23 @@ lualine.setup {
   sections = {
     lualine_a = {mode},
     lualine_b = {branch, diff, diagnostics},
-    lualine_c = {filename},
-    lualine_x = {encoding, fileformat, filetype},
-    lualine_y = {progress},
+    lualine_c = {'filename'},
+    lualine_x = {'encoding', 'fileformat', filetype},
+    lualine_y = {'progress'},
     lualine_z = {location}
   },
   inactive_sections = {
     lualine_a = {},
     lualine_b = {},
-    lualine_c = {filename},
+    lualine_c = {'filename'},
     lualine_x = {location},
     lualine_y = {},
     lualine_z = {}
   },
   tabline = {},
-  extensions = {}
+  extensions = {
+    'nvim-tree',
+    'toggleterm',
+    'fzf'
+  }
 }

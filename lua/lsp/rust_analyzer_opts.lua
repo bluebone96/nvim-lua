@@ -1,12 +1,5 @@
-local nvim_lsp = require'lspconfig'
-
-local on_attach = function(client, bufnr)
-    require'completion'.on_attach(client)
-    require('key_mapping').lsp_keymap_common(client, bufnr)
-end
 
 return {
-  on_attach=on_attach,
   settings = {
     ["rust-analyzer"] = {
       assist = {
@@ -19,10 +12,9 @@ return {
       procMacro = {
         enable = true
       },
+      checkOnSave = {
+        command = "clippy"
+      }
     }
-  },
-
-  flags = {
-    debounce_text_changes = 150,
-  },
+  }
 }
