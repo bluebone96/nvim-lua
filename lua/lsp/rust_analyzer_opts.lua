@@ -2,6 +2,11 @@
 return {
   settings = {
     ["rust-analyzer"] = {
+      completion = {
+        postfix = {
+          enable = false
+        }
+      },
       assist = {
         importGranularity = "module",
         importPrefix = "by_self",
@@ -15,6 +20,7 @@ return {
       checkOnSave = {
         command = "clippy"
       }
-    }
-  }
+    },
+  },
+
 }

@@ -39,33 +39,15 @@ for lsp_name, lsp_opts in pairs(lsp_servers) do
 
       -- for rust-tools
       if requested_server.name == "rust_analyzer" then
-        local rustopts = {
-          tools = {
-            autoSetHints = true,
-            hover_with_actions = false,
-            inlay_hints = {
-              show_parameter_hints = true,
-              parameter_hints_prefix = "",
-              other_hints_prefix = "",
-            },
-          },
-
-          server = vim.tbl_deep_extend("force", requested_server:get_default_options(), lsp_opts, {
-            settings = {
-              ["rust-analyzer"] = {
-                completion = {
-                  postfix = {
-                    enable = false
-                  }
-                },
-                checkOnSave = {
-                  command = "clippy"
-                },
-              }
-            }
-          }),
+        -- Initialize the LSP via rust-tools instead
+        require("rust-tools").setup {
+          -- The "server" property provided in rust-tools setup function are the
+          -- settings rust-tools will provide to lspconfig during init.
+          -- We merge the necessary settings from nvim-lsp-installer (server:get_default_options())
+          -- with the user's own settings (opts).
+          server = vim.tbl_deep_extend("force", requested_server:get_default_options(), lsp_opts),
         }
-        require("rust-tools").setup(rustopts)
+
         requested_server:attach_buffers()
       else
         requested_server:setup(lsp_opts)
