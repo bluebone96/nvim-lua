@@ -1,6 +1,5 @@
 -- Use a loop to conveniently call 'setup' on multiple servers
-local lsp_servers = {}
--- python
+local lsp_servers = {} -- python
 lsp_servers["pyright"] = require'lsp.pyright_opts'
 -- rust
 lsp_servers["rust_analyzer"] = require'lsp.rust_analyzer_opts'
@@ -37,13 +36,44 @@ for lsp_name, lsp_opts in pairs(lsp_servers) do
       lsp_opts.on_attach = require('key_mapping').lsp_keymap_common
       lsp_opts.flags = { debounce_text_changes = 150 }
       lsp_opts.capabilities = capabilities
-      requested_server:setup(lsp_opts)
-      -- print("Setup lsp" .. lsp_name)
+
+      -- for rust-tools
+      if requested_server.name == "rust_analyzer" then
+        local rustopts = {
+          tools = {
+            autoSetHints = true,
+            hover_with_actions = false,
+            inlay_hints = {
+              show_parameter_hints = true,
+              parameter_hints_prefix = "",
+              other_hints_prefix = "",
+            },
+          },
+
+          server = vim.tbl_deep_extend("force", requested_server:get_default_options(), lsp_opts, {
+            settings = {
+              ["rust-analyzer"] = {
+                completion = {
+                  postfix = {
+                    enable = false
+                  }
+                },
+                checkOnSave = {
+                  command = "clippy"
+                },
+              }
+            }
+          }),
+        }
+        require("rust-tools").setup(rustopts)
+        requested_server:attach_buffers()
+      else
+        requested_server:setup(lsp_opts)
+      end
     end)
 
     if not requested_server:is_installed() then
-      -- Queue the server to be installed
-      -- print("Installing " .. lsp_name)
+      print("LSP Installing " .. lsp_name)
       requested_server:install()
     end
   end

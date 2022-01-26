@@ -60,6 +60,9 @@ vim.o.writebackup = false
 vim.o.swapfile = false
 -- smaller updatetime
 vim.o.updatetime = 300
+-- Show diagnostic popup on cursor hold
+vim.api.nvim_command('autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })')
+
 -- 设置 timeoutlen 为等待键盘快捷键连击时间300毫秒，可根据需要设置
 -- 遇到问题详见：https://github.com/nshen/learn-neovim-lua/issues/1
 vim.o.timeoutlen = 300
@@ -90,3 +93,4 @@ vim.wo.foldmethod = 'expr'
 vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
 -- 默认不要折叠
 vim.wo.foldlevel = 99
+

@@ -60,6 +60,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
   use {
     'nvim-telescope/telescope.nvim',
     requires = {
+      {'nvim-telescope/telescope-ui-select.nvim' },
       {'nvim-lua/plenary.nvim'},
       {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}, -- 加速搜索
     }
@@ -76,6 +77,10 @@ if fn.empty(fn.glob(install_path)) > 0 then
 
   -- 终端
   use 'akinsho/toggleterm.nvim'
+  -- rust-tools
+  use  'simrat39/rust-tools.nvim'
+  -- Debugging
+  use 'mfussenegger/nvim-dap'
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
