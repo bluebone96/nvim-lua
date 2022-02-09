@@ -29,8 +29,13 @@ local diagnostics = {
     info  = 'DiagnosticInfo',  -- Changes diagnostics' info color.
     hint  = 'DiagnosticHint',  -- Changes diagnostics' hint color.
   },
-  symbols = {error = 'E:', warn = 'W:', info = 'I:', hint = 'H:'},
   -- symbols = { error = " ", warn = " " },
+  symbols = {
+    error = "❌ ",
+    warn = "⚠️ ",
+    info = "ℹ️ ",
+    hint = "💡 ",
+  },
   colored = true,
   update_in_insert = false,
   always_visible = false,

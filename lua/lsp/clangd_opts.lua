@@ -1,17 +1,25 @@
 return {
   default_config = {
     cmd = {
-      "clangd", "--background-index", "--pch-storage=memory",
-      "--clang-tidy", "--suggest-missing-includes"
+      "clangd",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "--clang-tidy",
+      "--background-index",
+      "--pch-storage=memory",
+      "--suggest-missing-includes",
+      "--header-insertion=iwyu"
     },
     filetypes = {"c", "cpp", "objc", "objcpp"},
-    --root_dir = root_pattern("compile_commands.json", "compile_flags.txt", ".git"),
+    -- root_dir = root_pattern("compile_commands.json", "compile_flags.txt", ".git"),
     single_file_support = true,
   },
 
   init_options = {
-    fallbackFlags = {
-      "-std=c++2a",
-    },
+    -- fallbackFlags = {
+    --   "-std=c++2a",
+    -- },
+    clangdFileStatus = true
   },
 }
