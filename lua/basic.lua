@@ -93,4 +93,6 @@ vim.wo.foldmethod = 'expr'
 vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
 -- 默认不要折叠
 vim.wo.foldlevel = 99
+-- 默认使用系统剪切板, wsl使用的win32yank剪切板
+vim.o.clipboard = "unnamedplus"
 
