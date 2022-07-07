@@ -17,9 +17,9 @@ return {
   },
 
   init_options = {
-    -- fallbackFlags = {
-    --   "-std=c++2a",
-    -- },
+    fallbackFlags = {
+       "-std=c++2a",
+    },
     clangdFileStatus = true
   },
 }
