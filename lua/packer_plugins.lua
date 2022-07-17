@@ -31,6 +31,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
       {'p00f/nvim-ts-rainbow', opt = true },
       -- tab跳出括号
       {'abecodes/tabout.nvim'},
+      {'nvim-treesitter/nvim-tree-docs'},
     },
   }
   -- 类型airline 状态栏

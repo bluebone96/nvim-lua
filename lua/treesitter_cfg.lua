@@ -42,7 +42,9 @@ require'nvim-treesitter.configs'.setup {
   context_commentstring = {
     enable = true,
     enable_autocmd = false,
-  }
+  },
+
+   tree_docs = { enable = true }
 }
 
 require('nvim-treesitter.install').compilers = { "clang" }

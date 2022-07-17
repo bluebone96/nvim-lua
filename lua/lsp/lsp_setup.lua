@@ -1,8 +1,9 @@
-local status_ok, lsp_installer = pcall(require, "nvim-lsp-installer") if not status_ok then return
+local status_ok, lsp_installer = pcall(require, "nvim-lsp-installer")
+if not status_ok then return
 end
 
 -- Use a loop to conveniently call 'setup' on multiple servers
-local lsp_servers = { "pyright", "rust_analyzer", "clangd", "cmake", "bashls", "sumneko_lua" }
+local lsp_servers = { "sumneko_lua", "pyright", "rust_analyzer", "clangd", "cmake", "bashls", }
 
 lsp_installer.setup({
   automatic_installation = true,
@@ -14,6 +15,8 @@ local sok, lsp_config = pcall(require, "lspconfig")
 if not sok then
   return
 end
+
+Util = lsp_config.util
 
 
 local rust_tools_status, rust_tools = pcall(require, "rust-tools")
@@ -28,7 +31,7 @@ for _, server in ipairs(lsp_servers) do
     capabilities = capabilities,
   }
 
-  local has_custom_opts, server_custom_opts = pcall(require, server)
+  local has_custom_opts, server_custom_opts = pcall(require, "lua.lsp." .. server)
   if has_custom_opts then
     opts = vim.tbl_deep_extend("force", opts, server_custom_opts)
   end
