@@ -1,5 +1,5 @@
 local fn = vim.fn
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
   PACKER_BOOTSTRAP = fn.system({
     'git',
@@ -7,32 +7,32 @@ if fn.empty(fn.glob(install_path)) > 0 then
     '--depth',
     '1',
     'https://github.com/wbthomason/packer.nvim',
-    install_path})
-  end
+    install_path })
+end
 
-  return require('packer').startup(function(use)
-    -- Packer can manage itself
-    use 'wbthomason/packer.nvim'
-    -- 主题插件
-    use 'sainnhe/sonokai'
-    -- 目录树插件
-    use {
-      'kyazdani42/nvim-tree.lua',
-      requires = { 'kyazdani42/nvim-web-devicons'}, -- optional, for file icon
-    }
-    -- Tab标签
-    use {
-      'akinsho/bufferline.nvim',
-      requires = 'kyazdani42/nvim-web-devicons'
-    }
-    -- 语法高亮支持
-    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', requires = {
-      -- ts-rainbow 彩虹括号 依赖 nvim-treesitter
-      {'p00f/nvim-ts-rainbow', opt = true },
-      -- tab跳出括号
-      {'abecodes/tabout.nvim'},
-      {'nvim-treesitter/nvim-tree-docs'},
-    },
+return require('packer').startup(function(use)
+  -- Packer can manage itself
+  use 'wbthomason/packer.nvim'
+  -- 主题插件
+  use 'sainnhe/sonokai'
+  -- 目录树插件
+  use {
+    'kyazdani42/nvim-tree.lua',
+    requires = { 'kyazdani42/nvim-web-devicons' }, -- optional, for file icon
+  }
+  -- Tab标签
+  use {
+    'akinsho/bufferline.nvim',
+    requires = 'kyazdani42/nvim-web-devicons'
+  }
+  -- 语法高亮支持
+  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', requires = {
+    -- ts-rainbow 彩虹括号 依赖 nvim-treesitter
+    { 'p00f/nvim-ts-rainbow', opt = true },
+    -- tab跳出括号
+    { 'abecodes/tabout.nvim' },
+    { 'nvim-treesitter/nvim-tree-docs' },
+  },
   }
   -- 类型airline 状态栏
   use {
@@ -61,9 +61,9 @@ if fn.empty(fn.glob(install_path)) > 0 then
   use {
     'nvim-telescope/telescope.nvim',
     requires = {
-      {'nvim-telescope/telescope-ui-select.nvim' },
-      {'nvim-lua/plenary.nvim'},
-      {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}, -- 加速搜索
+      { 'nvim-telescope/telescope-ui-select.nvim' },
+      { 'nvim-lua/plenary.nvim' },
+      { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }, -- 加速搜索
     }
   }
 
@@ -79,9 +79,19 @@ if fn.empty(fn.glob(install_path)) > 0 then
   -- 终端
   use 'akinsho/toggleterm.nvim'
   -- rust-tools
-  use  'simrat39/rust-tools.nvim'
+  use 'simrat39/rust-tools.nvim'
   -- Debugging
   use 'mfussenegger/nvim-dap'
+
+  use {
+    "folke/todo-comments.nvim",
+    requires = "nvim-lua/plenary.nvim",
+    config = function()
+      require("todo-comments").setup {
+
+      }
+    end
+  }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
@@ -90,5 +100,3 @@ if fn.empty(fn.glob(install_path)) > 0 then
   end
 
 end)
-
-
