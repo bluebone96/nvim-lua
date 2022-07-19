@@ -90,6 +90,10 @@ map('n', '<leader>fh', ":lua require('telescope.builtin').help_tags()<cr>", opt)
 map('n', '<leader>/',  ":lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>", opt)
 --map('n', '<leader>fs', ":lua require('telescope.builtin').file_browser()<cr>", opt)
 
+-- neogen 快速注释
+local opts = { noremap = true, silent = true }
+vim.api.nvim_set_keymap("n", "<Leader>nf", ":lua require('neogen').generate()<CR>", opts)
+
 -- 插件快捷键 外部引用
 local _plugin_keys = { }
 

@@ -29,4 +29,4 @@ require('comment_cfg')
 -- 终端
 require('toggleterm_cfg')
 -- todo-comment
--- require('todocomments')
+require('todocomments')
